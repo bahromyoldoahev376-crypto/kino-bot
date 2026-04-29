@@ -1,47 +1,134 @@
-# kino-bot
-import asyncio
-import logging
+# kino-bot 🎬
 
-from aiogram import Bot, Dispatcher, F
-from aiogram.filters import Command
-from aiogram.types import Message
+Telegram bot orqali kinolar haqida ma'lumot olish uchun oddiy va foydali ilovasi.
 
-TOKEN = "7556805552:AAEaGmx2Cw7og-cAFuLfzJX_liY-wjJHx0k"
+## Tavsifi
 
-logging.basicConfig(level=logging.INFO)
+**kino-bot** - Bu aiogram kutubxonasi asosida yaratilgan Telegram boti bo'lib, foydalanuvchilar kino kodlarini kiritsalar, mos kino nomini olishlari mumkin. Bot Uzbek tilida ishlaydi va oddiy interfeysga ega.
 
-bot = Bot(token=TOKEN)
-dp = Dispatcher()
+## Xususiyatlari
 
+✅ Tezkor javob  
+✅ Oson foydalanish  
+✅ Uzbek tilida ishlaydi  
+✅ Async/await texnologiyasi  
+✅ Logging tizimi
+
+## O'rnatish
+
+### Talab qilinadigan narsalar
+- Python 3.8+
+- pip paket boshqaruvchisi
+
+### Qadamlar
+
+1. Reposini klonlang:
+```bash
+git clone https://github.com/bahromyoldoahev376-crypto/kino-bot.git
+cd kino-bot
+```
+
+2. Virtual muhit yaratib, faollashtiring:
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac uchun
+# yoki
+venv\Scripts\activate  # Windows uchun
+```
+
+3. Zaruriy paketlarni o'rnatib qo'ying:
+```bash
+pip install -r requirements.txt
+```
+
+## Konfiguratsiya
+
+1. **BotFather dan token oling:**
+   - Telegram'da @BotFather botga xabar yuboring
+   - `/newbot` buyrug'ini kiriting
+   - Bot nomini va username'ni tanlang
+   - Olingan tokenni saqlang
+
+2. **main.py da tokenni o'rnatib qo'ying:**
+```python
+TOKEN = "SIZNING_BOT_TOKENINGIZ"
+```
+
+3. **Kino ma'lumotlarini qo'shib/o'zgartirib qo'ying:**
+```python
 KINOLAR = {
     "101": "Avatar",
     "102": "Fast & Furious",
     "103": "John Wick"
 }
+```
 
-@dp.message(Command("start"))
-async def start_handler(message: Message):
-    await message.answer(
-        f"🎬 Salom, {message.from_user.full_name}!\n\n"
-        "Kino kodini yuboring."
-    )
+## Foydalanish
 
-@dp.message(F.text)
-async def kino_handler(message: Message):
-    kod = message.text.strip()
+Botni ishga tushiring:
+```bash
+python main.py
+```
 
-    if kod in KINOLAR:
-        await message.answer(
-            f"🎥 Kino topildi:\n{KINOLAR[kod]}"
-        )
-    else:
-        await message.answer(
-            "❌ Bunday kino topilmadi."
-        )
+Telegram'da botga xabar yuboring:
+1. `/start` buyrug'ini yuboring
+2. Kino kodini yuboring (masalan: "101", "102", "103")
+3. Bot kino nomini qaytaradi
 
-async def main():
-    print("Bot ishga tushdi!")
-    await dp.start_polling(bot)
+**Misol:**
+```
+Foydalanuvchi: 101
+Bot: 🎥 Kino topildi:
+     Avatar
+```
 
-if __name__ == "__main__":
-    asyncio.run(main())
+## Struktura
+
+```
+kino-bot/
+├── main.py           # Asosiy bot fayli
+├── requirements.txt  # Zaruriy paketlar
+└── README.md        # Bu fayl
+```
+
+## Zaruriy paketlar
+
+- **aiogram** - Telegram Bot API kutubxonasi
+- **asyncio** - Async programmaviy interfeys
+
+Batafsil: `requirements.txt` faylini qarang.
+
+## Loyihani Rivojlantirish
+
+Agar siz bu loyihani kengaytirmoqchi bo'lsangiz, quyidagi qo'shilishlarni o'ylab ko'ring:
+
+- 📊 Database integratsiyasi (SQLite, PostgreSQL)
+- 🎨 Inline keyboard (InlineKeyboardMarkup)
+- 💾 Stateful user sessions
+- 🔍 Kino qidirish funksionali
+- 📦 Raytinglar va kommentariyalar sistema
+- 🌐 Bir nechta tilli qo'llab-quvvatlash
+
+## Xavfsizlik Ogohlantirmasi
+
+⚠️ **Bot tokenini hech qachon publicga ochiq qo'ymang!**
+- `.gitignore` faylidan foydalaning
+- Tokenni `.env` faylida saqlang
+- Parol va sensitive ma'lumotlarni repositoryda saqlashdan saqlinin
+
+## Muammolar va Takliflar
+
+Agar sizda muammolar yoki takliflar bo'lsa, [Issues](https://github.com/bahromyoldoahev376-crypto/kino-bot/issues) bo'limiga yozing.
+
+## Litsenziya
+
+MIT Litsenziyasi - Batafsil uchun LICENSE faylini qarang.
+
+## Mualliflar
+
+👤 **bahromyoldoahev376-crypto**
+
+---
+
+**O'xshash loyihalarni ko'ring:** [GitHub](https://github.com/bahromyoldoahev376-crypto)  
+**Yaratilgan:** 2026-yil
